@@ -22,6 +22,9 @@ public:
     const Disciplina &getDisciplina() const;
     void setDisciplina(const Disciplina &newDisciplina);
 
+    QString toQString()const;
+    float getNotaf() const;
+
 private:
     int ano;
     int semestre;

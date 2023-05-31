@@ -76,3 +76,12 @@ void Matricula::setDisciplina(const Disciplina &newDisciplina)
     disciplina = newDisciplina;
 }
 
+QString Matricula::toQString()const{
+    return QString::number(ano)+";"+QString::number(semestre)+";"+aluno.getDados()+";"+QString::number(nota1)+";"+QString::number(nota2)+";"+QString::number((nota1+nota2)/2);
+
+}
+
+float Matricula::getNotaf() const
+{
+    return (nota1+nota2)/2;
+}
