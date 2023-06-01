@@ -15,7 +15,10 @@ SOURCES += \
     disciplina.cpp \
     main.cpp \
     mainwindow.cpp \
-    matricula.cpp
+    matricula.cpp \
+    turma.cpp \
+    turmacontroler.cpp \
+    turmadao.cpp
 
 HEADERS += \
     aluno.h \
@@ -24,7 +27,10 @@ HEADERS += \
     dao.h \
     disciplina.h \
     mainwindow.h \
-    matricula.h
+    matricula.h \
+    turma.h \
+    turmacontroler.h \
+    turmadao.h
 
 FORMS += \
     mainwindow.ui

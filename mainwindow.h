@@ -30,10 +30,8 @@ private slots:
 
     void on_pushButtonRemover_clicked();
 
-    void on_pushButtonSearch_clicked();
-
 private:
-    QString filename;
+    QString filename= "C:/Users/LUCIANO/Downloads/Trabalho-Aluno-master/alunos.csv";
     AlunoControler* controler;
     Ui::MainWindow *ui;
 };
