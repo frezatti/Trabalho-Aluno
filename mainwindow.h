@@ -30,8 +30,10 @@ private slots:
 
     void on_pushButtonRemover_clicked();
 
+    void on_pushButtonSearch_clicked();
+
 private:
-    QString filename= "/home/puc/Documentos/Trabalho-Aluno-master/AlunoClass-TP2.pro";
+    QString filename;
     AlunoControler* controler;
     Ui::MainWindow *ui;
 };

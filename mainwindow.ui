@@ -2,23 +2,29 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>724</width>
-    <height>593</height>
+    <width>725</width>
+    <height>617</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Relatorio Escola</string>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>20</y>
       <width>721</width>
       <height>551</height>
      </rect>
@@ -65,7 +71,7 @@
         <x>110</x>
         <y>90</y>
         <width>441</width>
-        <height>26</height>
+        <height>30</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -92,7 +98,7 @@
         <x>110</x>
         <y>140</y>
         <width>441</width>
-        <height>26</height>
+        <height>30</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -119,7 +125,7 @@
         <x>90</x>
         <y>180</y>
         <width>501</width>
-        <height>25</height>
+        <height>31</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -186,7 +192,7 @@
        <item>
         <widget class="QPushButton" name="pushButtonListarDis">
          <property name="text">
-          <string>Listar</string>
+          <string>Atualizar</string>
          </property>
         </widget>
        </item>
@@ -202,7 +208,7 @@
        <rect>
         <x>250</x>
         <y>10</y>
-        <width>131</width>
+        <width>191</width>
         <height>51</height>
        </rect>
       </property>
@@ -222,7 +228,7 @@
         <x>80</x>
         <y>110</y>
         <width>311</width>
-        <height>24</height>
+        <height>30</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -249,7 +255,7 @@
         <x>80</x>
         <y>70</y>
         <width>151</width>
-        <height>24</height>
+        <height>30</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -332,13 +338,13 @@
        <string>Consultar</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>410</x>
         <y>71</y>
         <width>131</width>
-        <height>61</height>
+        <height>76</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -420,7 +426,7 @@
         <x>140</x>
         <y>100</y>
         <width>351</width>
-        <height>26</height>
+        <height>30</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -447,7 +453,7 @@
         <x>140</x>
         <y>200</y>
         <width>451</width>
-        <height>32</height>
+        <height>38</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -546,7 +552,7 @@
         <x>140</x>
         <y>140</y>
         <width>451</width>
-        <height>26</height>
+        <height>30</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -572,7 +578,7 @@
        <rect>
         <x>290</x>
         <y>10</y>
-        <width>71</width>
+        <width>101</width>
         <height>51</height>
        </rect>
       </property>
@@ -588,14 +594,47 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>53</x>
+      <y>40</y>
+      <width>551</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <widget class="QLabel" name="labelSearch">
+       <property name="text">
+        <string>Arquivo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditSearch">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonSearch">
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>724</width>
-     <height>20</height>
+     <width>725</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>
