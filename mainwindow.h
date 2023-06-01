@@ -33,7 +33,7 @@ private slots:
     void on_pushButtonSearch_clicked();
 
 private:
-    QString filename= "C:/Users/LUCIANO/Downloads/Trabalho-Aluno-master/alunos.csv";
+    QString filename;
     AlunoControler* controler;
     Ui::MainWindow *ui;
 };
