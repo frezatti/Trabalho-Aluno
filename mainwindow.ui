@@ -2,35 +2,29 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="enabled">
-   <bool>true</bool>
-  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>725</width>
-    <height>617</height>
+    <width>724</width>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Relatorio Escola</string>
-  </property>
-  <property name="documentMode">
-   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>20</y>
+      <y>0</y>
       <width>721</width>
       <height>551</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -71,7 +65,7 @@
         <x>110</x>
         <y>90</y>
         <width>441</width>
-        <height>30</height>
+        <height>26</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -98,7 +92,7 @@
         <x>110</x>
         <y>140</y>
         <width>441</width>
-        <height>30</height>
+        <height>26</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -125,7 +119,7 @@
         <x>90</x>
         <y>180</y>
         <width>501</width>
-        <height>31</height>
+        <height>26</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -192,7 +186,7 @@
        <item>
         <widget class="QPushButton" name="pushButtonListarDis">
          <property name="text">
-          <string>Atualizar</string>
+          <string>Listar</string>
          </property>
         </widget>
        </item>
@@ -208,7 +202,7 @@
        <rect>
         <x>250</x>
         <y>10</y>
-        <width>191</width>
+        <width>131</width>
         <height>51</height>
        </rect>
       </property>
@@ -228,7 +222,7 @@
         <x>80</x>
         <y>110</y>
         <width>311</width>
-        <height>30</height>
+        <height>24</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -255,7 +249,7 @@
         <x>80</x>
         <y>70</y>
         <width>151</width>
-        <height>30</height>
+        <height>24</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -344,7 +338,7 @@
         <x>410</x>
         <y>71</y>
         <width>131</width>
-        <height>76</height>
+        <height>62</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -426,7 +420,7 @@
         <x>140</x>
         <y>100</y>
         <width>351</width>
-        <height>30</height>
+        <height>26</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -453,7 +447,7 @@
         <x>140</x>
         <y>200</y>
         <width>451</width>
-        <height>38</height>
+        <height>32</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -552,7 +546,7 @@
         <x>140</x>
         <y>140</y>
         <width>451</width>
-        <height>30</height>
+        <height>26</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -578,7 +572,7 @@
        <rect>
         <x>290</x>
         <y>10</y>
-        <width>101</width>
+        <width>71</width>
         <height>51</height>
        </rect>
       </property>
@@ -593,39 +587,193 @@
       </property>
      </widget>
     </widget>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>53</x>
-      <y>40</y>
-      <width>551</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_9">
-     <item>
-      <widget class="QLabel" name="labelSearch">
-       <property name="text">
-        <string>Arquivo</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEditSearch">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonSearch">
-       <property name="text">
-        <string>Search</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Turma</string>
+     </attribute>
+     <widget class="QLabel" name="label_28">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>-10</y>
+        <width>81</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>19</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Turma</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>200</y>
+        <width>461</width>
+        <height>181</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>60</y>
+        <width>451</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Cod. da Disciplina :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEditMat_2"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>100</y>
+        <width>451</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Cod. da turma :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEditNome_2"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>150</y>
+        <width>458</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QPushButton" name="pushButtonInserir_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Inserir</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonAtualizar_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Atualizar</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonConsultar_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Consultar</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_9">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonRemover_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Remover</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -633,8 +781,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>725</width>
-     <height>25</height>
+     <width>724</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
