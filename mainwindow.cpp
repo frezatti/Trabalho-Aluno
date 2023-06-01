@@ -46,7 +46,7 @@ void updateTable(AlunoControler *controler,Ui::MainWindow* ui){
 void MainWindow::on_pushButtonInserir_clicked()
 {
     try {
-        QString matricula = ui->lineEditMat->text();
+        QString matricula = ui->lineEditMatAluno->text();
         QString nome = ui->lineEditNome->text();
         if(nome!= ""&& matricula !=""){
             controler->addAluno(matricula,nome);
@@ -54,6 +54,7 @@ void MainWindow::on_pushButtonInserir_clicked()
             throw QString("Ambos os campos devem estar preenchidos para que um Aluno posso ser incluido");
         }
         updateTable(controler, ui);
+        ui->lineEditMatAluno->setFocus();
     } catch (QString &error) {
        QMessageBox::warning(this,"Erro",error);
     }
@@ -63,11 +64,13 @@ void MainWindow::on_pushButtonInserir_clicked()
 void MainWindow::on_pushButtonConsultar_clicked()
 {
     try {
-        QString matricula = ui->lineEditMat->text();
+        QString matricula = ui->lineEditMatAluno->text();
         if(matricula == "") throw QString("Para fazer um busca e preciso fornecer uma matricula");
         controler->buscarAluno(matricula);
        QStringList aluno = matricula.split(";");
        ui->lineEditNome->setText(aluno[1]);
+       ui->lineEditMatAluno->setFocus();
+
     } catch (QString &error) {
         QMessageBox::warning(this,"Erro",error);
     }
@@ -77,11 +80,13 @@ void MainWindow::on_pushButtonConsultar_clicked()
 void MainWindow::on_pushButtonAtualizar_clicked()
 {
     try {
-        QString matricula =  ui->lineEditMat->text();
+        QString matricula =  ui->lineEditMatAluno->text();
         QString nome = ui->lineEditNome->text();;
         if(matricula == ""&& nome == "") throw QString("Preencher matricula e nome");
         controler->atualiazarAluno(matricula,nome);
         updateTable(controler,ui);
+        ui->lineEditMatAluno->setFocus();
+
     } catch (QString &error) {
         QMessageBox::warning(this,"Erro",error);
     }
@@ -93,10 +98,12 @@ void MainWindow::on_pushButtonAtualizar_clicked()
 void MainWindow::on_pushButtonRemover_clicked()
 {
     try {
-        QString matricula =  ui->lineEditMat->text();
+        QString matricula =  ui->lineEditMatAluno->text();
         if(matricula == "") throw QString("Para fazer um busca e preciso fornecer uma matricula");
         controler->deleteAluno(matricula);
         updateTable(controler,ui);
+        ui->lineEditMatAluno->setFocus();
+
     } catch(QString &error) {
         QMessageBox::warning(this,"Erro",error);
     }

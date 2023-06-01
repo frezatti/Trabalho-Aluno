@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
-    <height>619</height>
+    <width>725</width>
+    <height>642</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -336,9 +336,9 @@
       <property name="geometry">
        <rect>
         <x>410</x>
-        <y>71</y>
+        <y>75</y>
         <width>131</width>
-        <height>76</height>
+        <height>61</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -389,7 +389,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEditNota1_2">
+          <widget class="QLineEdit" name="lineEditNota2">
            <property name="text">
             <string/>
            </property>
@@ -437,7 +437,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditMat"/>
+        <widget class="QLineEdit" name="lineEditMatAluno"/>
        </item>
       </layout>
      </widget>
@@ -778,14 +778,14 @@
    <widget class="QPushButton" name="pushButtonSearch">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>400</x>
       <y>20</y>
       <width>83</width>
       <height>29</height>
      </rect>
     </property>
     <property name="text">
-     <string>search</string>
+     <string>Search</string>
     </property>
    </widget>
   </widget>
@@ -794,7 +794,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>759</width>
+     <width>725</width>
      <height>25</height>
     </rect>
    </property>
