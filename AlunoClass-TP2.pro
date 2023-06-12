@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,9 +13,12 @@ SOURCES += \
     alunocontroler.cpp \
     alunodao.cpp \
     disciplina.cpp \
+    disciplinacontroler.cpp \
+    disciplinadao.cpp \
     main.cpp \
     mainwindow.cpp \
     matricula.cpp \
+    matriculadao.cpp \
     turma.cpp \
     turmacontroler.cpp \
     turmadao.cpp
@@ -26,8 +29,11 @@ HEADERS += \
     alunodao.h \
     dao.h \
     disciplina.h \
+    disciplinacontroler.h \
+    disciplinadao.h \
     mainwindow.h \
     matricula.h \
+    matriculadao.h \
     turma.h \
     turmacontroler.h \
     turmadao.h

@@ -7,10 +7,13 @@
 #include <QString>
 #include <QStringList>
 #include <fstream>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 
 class AlunoDAO : public DAO<Aluno>
 {
 public:
+    AlunoDAO();
     AlunoDAO(QString filename):filename(filename){}
     void inserir(Aluno* obj);//Create
     Aluno* buscar(QString const &id);//Read
@@ -22,6 +25,8 @@ private:
     std::list<Aluno*>* lerArquivo();
     void gravarArquivo(std::list<Aluno*>* lista);
     Aluno* buscarArquivo(QString const &id);
+    QSqlDatabase db;
+    QString nomeBD;
 };
 
 #endif // ALUNODAO_H

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "alunocontroler.h"
+#include "disciplinacontroler.h"
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -32,9 +33,18 @@ private slots:
 
     void on_pushButtonSearch_clicked();
 
+    void on_pushButtonIncluirDis_clicked();
+
+    void on_pushButtonConsultarDis_clicked();
+
+    void on_pushButtonRemoverDis_clicked();
+
+    void on_pushButtonAtualizarDis_clicked();
+
 private:
     QString filename;
     AlunoControler* controler;
+    DisciplinaControler* controlerDis;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

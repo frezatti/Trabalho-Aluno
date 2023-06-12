@@ -8,17 +8,19 @@ class Disciplina
 {
 public:
     Disciplina();
-    Disciplina(std::string codigo,std::string disciplina);
-    const std::string &getCod_disciplina() const;
-    void setCod_disciplina(const std::string &newCod_disciplina);
+    Disciplina(QString codigo,QString disciplina);
+    const QString &getCod_disciplina() const;
+    void setCod_disciplina(const QString &newCod_disciplina);
 
-    const std::string &getNome_disciplina() const;
-    void setNome_disciplina(const std::string &newNome_disciplina);
+    const QString &getNome_disciplina() const;
+    void setNome_disciplina(const QString &newNome_disciplina);
+
+    QString getDadosDisciplina() const;
 
     QString toQString()const;
 private:
-    std::string cod_disciplina;
-    std::string nome_disciplina;
+    QString cod_disciplina;
+    QString nome_disciplina;
 };
 
 #endif // DISCIPLINA_H

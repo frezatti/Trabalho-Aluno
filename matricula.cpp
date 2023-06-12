@@ -56,9 +56,9 @@ void Matricula::setNota2(float newNota2)
     nota2 = newNota2;
 }
 
-const Aluno &Matricula::getAluno() const
+const QString &Matricula::getAluno() const
 {
-    return aluno;
+    return aluno.getDados();
 }
 
 void Matricula::setAluno(const Aluno &newAluno)
@@ -66,9 +66,9 @@ void Matricula::setAluno(const Aluno &newAluno)
     aluno = newAluno;
 }
 
-const Disciplina &Matricula::getDisciplina() const
+const QString &Matricula::getDisciplina() const
 {
-    return disciplina;
+    return disciplina.toQString();
 }
 
 void Matricula::setDisciplina(const Disciplina &newDisciplina)
@@ -84,4 +84,14 @@ QString Matricula::toQString()const{
 float Matricula::getNotaf() const
 {
     return (nota1+nota2)/2;
+}
+
+QString Matricula::getTurma() const
+{
+    return turma.toQString();
+}
+
+void Matricula::setTurma(const Turma &newTurma)
+{
+    turma = newTurma;
 }

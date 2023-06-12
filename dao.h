@@ -12,6 +12,7 @@ public:
     virtual void alterar(Tipo* obj)=0;//Update
     virtual void deletar(QString const &id)=0;//Delete
 
+
 };
 
 #endif // DAO_H

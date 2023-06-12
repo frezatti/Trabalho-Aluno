@@ -4,31 +4,39 @@ Disciplina::Disciplina()
 {
 
 }
-Disciplina::Disciplina(std::string codigo,std::string disciplina):cod_disciplina(codigo),nome_disciplina(disciplina){}
 
-const std::string &Disciplina::getCod_disciplina() const
+Disciplina::Disciplina(QString codigo, QString disciplina) {
+    cod_disciplina = codigo;
+    nome_disciplina = disciplina;
+}
+
+const QString &Disciplina::getCod_disciplina() const
 {
     return cod_disciplina;
 }
 
-void Disciplina::setCod_disciplina(const std::string &newCod_disciplina)
+void Disciplina::setCod_disciplina(const QString &newCod_disciplina)
 {
     cod_disciplina = newCod_disciplina;
 }
 
-const std::string &Disciplina::getNome_disciplina() const
+const QString &Disciplina::getNome_disciplina() const
 {
     return nome_disciplina;
 }
 
-void Disciplina::setNome_disciplina(const std::string &newNome_disciplina)
+void Disciplina::setNome_disciplina(const QString &newNome_disciplina)
 {
     nome_disciplina = newNome_disciplina;
 }
+
+QString Disciplina::getDadosDisciplina()const{
+    return cod_disciplina+";"+nome_disciplina;
+}
 QString Disciplina::toQString() const {
     QString str;
-    str += QString::fromStdString(cod_disciplina) + ";";
-    str += QString::fromStdString(nome_disciplina);
+    str += cod_disciplina + ";";
+    str += nome_disciplina;
     return str;
 }
 

@@ -1,6 +1,13 @@
 #include "alunodao.h"
 #include <string>
 
+AlunoDAO::AlunoDAO()
+{
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    nomeBD = "C:/Users/i5/Documents/Junio/Trabalho-Aluno-master/academico.db";
+    db.setDatabaseName(nomeBD);
+}
+
 void AlunoDAO::inserir(Aluno* obj){//Create
    std::list<Aluno*>* lista = lerArquivo();//cria list do arquivo
    if(this->buscarArquivo(obj->getMatricula())!=nullptr)

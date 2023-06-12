@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->tabWidget->hide();
+
 }
 
 
@@ -118,11 +118,76 @@ void MainWindow::on_pushButtonSearch_clicked()
         if(filename.isEmpty()) throw QString("Arquivo nao foi selecionado");
         controler = new AlunoControler(filename);
         updateTable(controler,ui);
-        ui->pushButtonSearch->hide();;
         ui->tabWidget->show();
 
     } catch (QString &erro) {
         QMessageBox::information(this,"ERRO",erro);
     }
+}
+
+
+void MainWindow::on_pushButtonIncluirDis_clicked()
+{
+        try {
+            QString codigo = ui->lineEditCodigoDis->text();
+            QString nome = ui->lineEditNomeDis->text();
+            if(nome!= ""&& codigo !=""){
+                controlerDis->addDisciplina(codigo,nome);
+            }else{
+                throw QString("Ambos os campos devem estar preenchidos para que uma Disciplina posso ser incluido");
+            }
+            //updateTable(controlerDis, ui);
+            ui->lineEditCodigoDis->setFocus();
+        } catch (QString &error) {
+           QMessageBox::warning(this,"Erro",error);
+        }
+    }
+
+
+void MainWindow::on_pushButtonConsultarDis_clicked()
+{
+    try {
+        QString codigo = ui->lineEditCodigoDis->text();
+        if(codigo == "") throw QString("Para fazer um busca e preciso fornecer uma matricula");
+        controlerDis->buscarDisciplina(codigo);
+       QStringList disciplina = codigo.split(";");
+       ui->lineEditNomeDis->setText(disciplina[1]);
+       ui->lineEditCodigoDis->setFocus();
+
+    } catch (QString &error) {
+        QMessageBox::warning(this,"Erro",error);
+    }
+}
+
+
+void MainWindow::on_pushButtonRemoverDis_clicked()
+
+{
+    try {
+        QString codigo =  ui->lineEditCodigoDis->text();
+        if(codigo == "") throw QString("Para fazer um busca e preciso fornecer um codigo");
+        //controlerDis->removerDisciplina(codigo);
+        //updateTable(controlerDis,ui);
+        ui->lineEditMatAluno->setFocus();
+
+    } catch(QString &error) {
+        QMessageBox::warning(this,"Erro",error);
+    }
+}
+
+
+void MainWindow::on_pushButtonAtualizarDis_clicked()
+{
+        try {
+            QString codigo =  ui->lineEditCodigoDis->text();
+            QString nome = ui->lineEditNomeDis->text();;
+            if(codigo == ""&& nome == "") throw QString("Preencher codigo e nome");
+            //controlerDis->atualizarDisciplina(codigo,nome);
+            //updateTable(controlerDis,ui);
+            ui->lineEditCodigoDis->setFocus();
+
+        } catch (QString &error) {
+            QMessageBox::warning(this,"Erro",error);
+        }
 }
 
