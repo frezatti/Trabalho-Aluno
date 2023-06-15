@@ -50,6 +50,10 @@ void Turma::setNumAlunos(int newNumAlunos)
     numAlunos = newNumAlunos;
 }
 
+QString Turma::getDadosTurma()const{
+    return cod_turma+";"+QString::number(sub_turma);
+}
+
 QString Turma::toQString()const{
     return QString(cod_turma)+";"+QString::number(sub_turma)+";"+QString::number(maxAlunos)+";"+QString::number(numAlunos);
 }

@@ -1,133 +1,114 @@
 #include "alunodao.h"
-#include <string>
 
-AlunoDAO::AlunoDAO()
+AlunoDAO::AlunoDAO(QSqlDatabase *db):db(db)
 {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    nomeBD = "C:/Users/i5/Documents/Junio/Trabalho-Aluno-master/academico.db";
-    db.setDatabaseName(nomeBD);
 }
 
-void AlunoDAO::inserir(Aluno* obj){//Create
-   std::list<Aluno*>* lista = lerArquivo();//cria list do arquivo
-   if(this->buscarArquivo(obj->getMatricula())!=nullptr)
-       throw QString("Matrícula já cadastrada");
-   else
-       lista->push_back(obj);
-   gravarArquivo(lista);
-   lista = nullptr;
+void AlunoDAO::incluir(Aluno* obj){
+    if (!db->open()){
+        throw QString("Erro ao abrir o banco de dados");
+    }
+    QSqlQuery query;
+    query.prepare("INSERT INTO aluno (mat_aluno, nom_aluno) VALUES (:mat, :nom);");
+    query.bindValue(":mat", obj->getMatricula());
+    query.bindValue(":nom", obj->getNome());
+    if (!query.exec()){
+        db->close();
+        throw QString("Erro ao executar a inserção");
+    }
+    db->close();
 }
-//Buscar aluno no arquivo
-Aluno* AlunoDAO::buscarArquivo(QString const &id){
-    Aluno* a=nullptr;//Ponteiro Obj Aluno
-    std::string linha;//Linha lida do arquivo
-    QString qLinha;//Linha lida no Formato QString
-    QStringList qLinhaList;//Lista de QString divididas ;
-    std::ifstream arquivo;//Arquivo CSV
-    arquivo.open(filename.toStdString().c_str());//Abrir arquivo
-    if(!arquivo.is_open())
-        throw QString("Erro: Arquivo não pode ser aberto");
-    getline(arquivo, linha);
-    while (!arquivo.eof()){
-        qLinha = QString::fromStdString(linha);
-        qLinhaList = qLinha.split(';');
-        if(qLinhaList[0] == id){
-            a = new Aluno(qLinhaList[0], qLinhaList[1]);
-            break;
+
+Aluno* AlunoDAO::buscar(Aluno* obj){
+    if (!db->open()){
+        throw QString("Erro ao abrir o banco de dados");
+    }
+    QString matricula(""), nome("");
+    QSqlQuery query;
+    if (obj!=nullptr){
+        query.prepare("SELECT * FROM aluno WHERE mat_aluno = :mat;");
+        query.bindValue(":mat", obj->getMatricula());
+        if (!query.exec()){
+            db->close();
+            throw QString("Erro ao executar a consulta");
         }
-        getline(arquivo, linha);
-    }
-    arquivo.close();//Fecha arquivo
-    return a;
-}
-//Buscar aluno
-Aluno* AlunoDAO::buscar(QString const &id){//Read
-    Aluno* a = this->buscarArquivo(id);
-    if(a != nullptr)
-        return a;
-    else
-        throw QString("Aluno não encontrado");
-}
-//Alterar aluno
-void AlunoDAO::alterar(Aluno* obj){//Update
-    bool achou = false;
-    std::list<Aluno*>* lista = lerArquivo();
-    std::list<Aluno*>::iterator it;
-    for(it = lista->begin(); it != lista->end(); ++it){
-        if((*it)->getMatricula() == obj->getMatricula()){
-            lista->erase(it);//Remove obj_antigo da lista
-            delete (*it);//Destroi obj_antigo
-            lista->push_back(obj);//Insere obj na lista
-            this->gravarArquivo(lista);//grava lista
-            achou = true;
-            break;
+        while (query.next()){
+            matricula = query.value(0).toString();
+            nome = query.value(1).toString();
         }
+        obj->setMatricula(matricula);
+        obj->setNome(nome);
+        db->close();
     }
-    if (!achou)
-        throw QString("Aluno não encontrado");
-}
-//Deletar aluno
-void AlunoDAO::deletar(QString const &id){//Delete
-    bool achou=false;
-    std::list<Aluno*>* lista = this->lerArquivo();
-    std::list<Aluno*>::iterator it;
-    for(it = lista->begin(); it != lista->end(); ++it){
-      if((*it)->getMatricula() == id){
-          lista->erase(it);
-          delete (*it);
-          this->gravarArquivo(lista);
-          achou = true;
-          break;
-      }
+    if (obj->getMatricula()!="") return obj;
+    else{
+        delete obj;
+        return nullptr;
     }
-    if (!achou)
-        throw QString("Aluno não encontrado");
 }
-//Ler arquivo CSV
-std::list<Aluno*>* AlunoDAO::lerArquivo(){
-    std::list<Aluno*>* lista = new std::list<Aluno*>();
-    Aluno* a=nullptr;//Ponteiro Obj Aluno
-    std::string linha;//Linha lida do arquivo
-    QString qLinha;//Linha lida no Formato QString
-    QStringList qLinhaList;//Lista de QString divididas ;
-    std::ifstream arquivo;//Arquivo CSV
-    arquivo.open(filename.toStdString().c_str());
-    if(!arquivo.is_open())
-        throw QString("Erro: Arquivo não pode ser aberto");
-    getline(arquivo, linha);
-    while (!arquivo.eof()){
-        qLinha = QString::fromStdString(linha);
-        qLinhaList = qLinha.split(';');
-        if(qLinhaList.size()>=2){
-            a = new Aluno(qLinhaList[0], qLinhaList[1]);
-            lista->push_back(a);
+
+void AlunoDAO::alterar(Aluno* obj){
+    Aluno* aluno = new Aluno();
+    aluno->setMatricula(obj->getMatricula());
+    if (this->buscar(aluno)==nullptr){
+        throw QString("Aluno não encontrado!");
+    }
+    else{
+        if (!db->open()){
+            throw QString("Erro ao abrir o banco de dados");
         }
-        getline(arquivo, linha);
+        QSqlQuery query;
+        query.prepare("UPDATE aluno SET nom_aluno = :nom WHERE mat_aluno = :mat ;");
+        query.bindValue(":nom", obj->getNome());
+        query.bindValue(":mat", obj->getMatricula());
+        if (!query.exec()){
+            db->close();
+            throw QString("Erro ao executar a update");
+        }
+        db->close();
+        delete obj;
     }
-    arquivo.close();//Fecha arquivo
-    return lista;
 }
-//Gravar Arquivo CSV
-void AlunoDAO::gravarArquivo(std::list<Aluno*>* lista){
-    std::ofstream arquivo;//Arquivo CSV
-    arquivo.open(filename.toStdString().c_str());
-    if(!arquivo.is_open())
-        throw QString("Erro: Arquivo não pode ser aberto");
-    //Grava arquivo
-    std::list<Aluno*>::iterator it;
-    for(it = lista->begin(); it != lista->end(); ++it)
-        arquivo << (*it)->getDados().toStdString()<<std::endl;
-    arquivo.close();//Fecha arquivo
-    delete lista;
-}
-//Listar alunos
-std::list<QString>* AlunoDAO::listar(){
-    std::list<Aluno*>* listaAluno = lerArquivo();
-    std::list<QString>* lista = new std::list<QString>();
-    std::list<Aluno*>::iterator it;
-    for(it = listaAluno->begin(); it != listaAluno->end(); ++it){
-        lista->push_back((*it)->getDados());
+
+Aluno* AlunoDAO::remover(Aluno* obj){
+    Aluno* aluno = new Aluno();
+    aluno->setMatricula(obj->getMatricula());
+    if (this->buscar(aluno)==nullptr){
+        throw QString("Aluno não encontrado!");
     }
-    delete listaAluno;
-    return lista;
+    else{
+        if (!db->open()){
+            throw QString("Erro ao abrir o banco de dados");
+        }
+        QSqlQuery query;
+        query.prepare("DELETE FROM aluno WHERE mat_aluno = :mat ;");
+        query.bindValue(":mat", obj->getMatricula());
+        if (!query.exec()){
+            db->close();
+            throw QString("Erro ao executar a delete");
+        }
+        db->close();
+        delete obj;
+    }
+}
+
+std::list<QString>* AlunoDAO::info(){
+    QSqlQuery query;
+    QString info;
+    std::list<QString>* infolist = new std::list<QString>;
+    if (!db->open()){
+        throw QString("Erro ao abrir o banco de dados");
+    }
+    query.prepare("SELECT mat_aluno , nom_aluno FROM aluno;");
+    if (!query.exec()) {
+        QString error = query.lastError().text();
+        throw QString("Erro ao executar a consulta: ") + error;
+    }
+
+    while (query.next()){
+        info = query.value(0).toString() +";"+ query.value(1).toString();
+        infolist->push_back(info);
+    }
+    db->close();
+    return infolist;
 }

@@ -13,6 +13,7 @@ class MatriculaDao: public DAO<Matricula>
 {
 public:
     MatriculaDao();
+    MatriculaDao(QString filename):filename(filename){}
     void inserir(Matricula* obj);  // Create
     Matricula* buscar(QString const& id);  // Read
     void alterar(Matricula* obj);  // Update

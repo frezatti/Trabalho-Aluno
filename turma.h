@@ -23,6 +23,8 @@ public:
 
     QString toQString()const;
 
+    QString getDadosTurma() const;
+
 
 
 private:

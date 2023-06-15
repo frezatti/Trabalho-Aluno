@@ -3,7 +3,7 @@
 MatriculaDao::MatriculaDao()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    nomeBD = "C:/Users/i5/Documents/Junio/Trabalho-Aluno-master/academico.db";
+    nomeBD = "/Users/adrielfrezatti/Programing/c++/Qt/Trabalho-Aluno/academico.db";
     db.setDatabaseName(nomeBD);
 }
 
@@ -15,7 +15,8 @@ void MatriculaDao::inserir(Matricula *obj){
     QSqlQuery query;
     query.prepare("INSERT INTO matricula (mat_aluno, cod_turma,cod_disciplina,nota1,nota2,meida) VALUES (:mat,,:tur,:dis,:nt1,nt2,med);");
     query.bindValue(":mat", obj->getAno()+obj->getSemestre());
-    query.bindValue(":tur", obj->getTurma());
+    query.bindValue(":tur", obj->getTurmaQs());
+    query.bindValue(":dis", obj->getDisciplinaQs());
     query.bindValue(":nt1", obj->getNota1());
     query.bindValue(":nt2", obj->getNota2());
     query.bindValue(":med", obj->getNotaf());

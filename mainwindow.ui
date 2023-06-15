@@ -17,14 +17,14 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>10</y>
+      <x>10</x>
+      <y>0</y>
       <width>721</width>
       <height>551</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -217,16 +217,6 @@
      <attribute name="title">
       <string>Disciplina</string>
      </attribute>
-     <widget class="QTextEdit" name="textEditDis">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>220</y>
-        <width>571</width>
-        <height>271</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
@@ -306,7 +296,7 @@
         <x>90</x>
         <y>180</y>
         <width>501</width>
-        <height>31</height>
+        <height>32</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -379,6 +369,16 @@
        </item>
       </layout>
      </widget>
+     <widget class="QTableWidget" name="tableWidgetDis">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>220</y>
+        <width>511</width>
+        <height>281</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -388,7 +388,7 @@
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>10</y>
+        <y>-10</y>
         <width>181</width>
         <height>51</height>
        </rect>
@@ -406,8 +406,8 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>110</y>
+        <x>87</x>
+        <y>82</y>
         <width>311</width>
         <height>30</height>
        </rect>
@@ -421,21 +421,21 @@
           </font>
          </property>
          <property name="text">
-          <string>Semestre</string>
+          <string>Codigo Turma</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditSemestre"/>
+        <widget class="QLineEdit" name="lineEditSCodDisciplina"/>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>70</y>
-        <width>151</width>
+        <x>87</x>
+        <y>42</y>
+        <width>311</width>
         <height>30</height>
        </rect>
       </property>
@@ -448,20 +448,20 @@
           </font>
          </property>
          <property name="text">
-          <string>Ano:</string>
+          <string>Matricula</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditAnoMat"/>
+        <widget class="QLineEdit" name="lineEditMatriculaMat"/>
        </item>
       </layout>
      </widget>
      <widget class="QTextEdit" name="textEditMat">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>200</y>
+        <x>40</x>
+        <y>230</y>
         <width>571</width>
         <height>271</height>
        </rect>
@@ -470,8 +470,8 @@
      <widget class="QPushButton" name="pushButtonRemoverMat">
       <property name="geometry">
        <rect>
-        <x>369</x>
-        <y>160</y>
+        <x>340</x>
+        <y>200</y>
         <width>80</width>
         <height>23</height>
        </rect>
@@ -483,8 +483,8 @@
      <widget class="QPushButton" name="pushButtonIncluirMat">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>160</y>
+        <x>61</x>
+        <y>200</y>
         <width>80</width>
         <height>23</height>
        </rect>
@@ -496,8 +496,8 @@
      <widget class="QPushButton" name="pushButtonListarMat">
       <property name="geometry">
        <rect>
-        <x>509</x>
-        <y>160</y>
+        <x>480</x>
+        <y>200</y>
         <width>80</width>
         <height>23</height>
        </rect>
@@ -509,8 +509,8 @@
      <widget class="QPushButton" name="pushButtonConsultarMat">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>160</y>
+        <x>201</x>
+        <y>200</y>
         <width>80</width>
         <height>23</height>
        </rect>
@@ -522,10 +522,10 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>75</y>
+        <x>470</x>
+        <y>70</y>
         <width>131</width>
-        <height>76</height>
+        <height>91</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -586,6 +586,33 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>120</y>
+        <width>311</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_14">
+       <item>
+        <widget class="QLabel" name="label_11">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Codigo disciplina</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEditCodTurmaMat"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -643,7 +670,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditMat_2"/>
+        <widget class="QLineEdit" name="lineEditCod_Disciplina"/>
        </item>
       </layout>
      </widget>
@@ -670,7 +697,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditNome_2"/>
+        <widget class="QLineEdit" name="lineEditCod_Turma_2"/>
        </item>
       </layout>
      </widget>
@@ -782,7 +809,7 @@
      <x>0</x>
      <y>0</y>
      <width>725</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

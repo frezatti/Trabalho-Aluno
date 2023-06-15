@@ -10,7 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     aluno.cpp \
-    alunocontroler.cpp \
+    alunocontroller.cpp \
     alunodao.cpp \
     disciplina.cpp \
     disciplinacontroler.cpp \
@@ -18,6 +18,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matricula.cpp \
+    matriculacontroler.cpp \
     matriculadao.cpp \
     turma.cpp \
     turmacontroler.cpp \
@@ -25,7 +26,7 @@ SOURCES += \
 
 HEADERS += \
     aluno.h \
-    alunocontroler.h \
+    alunocontroller.h \
     alunodao.h \
     dao.h \
     disciplina.h \
@@ -33,6 +34,7 @@ HEADERS += \
     disciplinadao.h \
     mainwindow.h \
     matricula.h \
+    matriculacontroler.h \
     matriculadao.h \
     turma.h \
     turmacontroler.h \

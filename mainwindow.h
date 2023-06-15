@@ -2,11 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "alunocontroler.h"
+#include "alunocontroller.h"
 #include "disciplinacontroler.h"
+#include "matriculacontroler.h"
+#include <QtSql>
+#include <QSqlDatabase>
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <turmacontroler.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,9 +34,9 @@ private slots:
     void on_pushButtonAtualizar_clicked();
 
     void on_pushButtonRemover_clicked();
-
+/*
     void on_pushButtonSearch_clicked();
-
+*/
     void on_pushButtonIncluirDis_clicked();
 
     void on_pushButtonConsultarDis_clicked();
@@ -40,11 +44,30 @@ private slots:
     void on_pushButtonRemoverDis_clicked();
 
     void on_pushButtonAtualizarDis_clicked();
+/*
+    void on_pushButtonIncluirMat_clicked();
+
+    void on_pushButtonConsultarMat_clicked();
+
+    void on_pushButtonRemoverMat_clicked();
+
+    void on_pushButtonListarMat_clicked();
+
+    void on_pushButtonInserir_2_clicked();
+    void on_pushButtonAtualizar_2_clicked();
+
+    void on_pushButtonConsultar_2_clicked();
+    void on_pushButtonRemover_2_clicked();
+*/
+    void on_tabWidget_currentChanged(int index);
 
 private:
-    QString filename;
-    AlunoControler* controler;
-    DisciplinaControler* controlerDis;
+    QSqlDatabase *db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"));
+    QString filepath = "/Users/adrielfrezatti/Programing/SistAcad/academico.db";
+    AlunoController *controler;
+    //MatriculaControler controlerMat;
+    DisciplinaControler *controlerDis;
     Ui::MainWindow *ui;
+    //TurmaControler* controlertur;
 };
 #endif // MAINWINDOW_H

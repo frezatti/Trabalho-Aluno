@@ -1,32 +1,25 @@
 #ifndef ALUNODAO_H
 #define ALUNODAO_H
 
-#include "dao.h"
 #include "aluno.h"
-#include <list>
 #include <QString>
-#include <QStringList>
-#include <fstream>
+#include<list>
+#include <string>
+#include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-
-class AlunoDAO : public DAO<Aluno>
+#include <QVariant>
+class AlunoDAO
 {
 public:
-    AlunoDAO();
-    AlunoDAO(QString filename):filename(filename){}
-    void inserir(Aluno* obj);//Create
-    Aluno* buscar(QString const &id);//Read
-    void alterar(Aluno* obj);//Update
-    void deletar(QString const &id);//Delete
-    std::list<QString>* listar();//Listar
+    AlunoDAO(QSqlDatabase *db);
+    void incluir(Aluno* obj);
+    Aluno* buscar(Aluno* obj);
+    void alterar(Aluno* obj);
+    Aluno* remover(Aluno* obj);
+    std::list<QString> *info();
 private:
-    QString filename;
-    std::list<Aluno*>* lerArquivo();
-    void gravarArquivo(std::list<Aluno*>* lista);
-    Aluno* buscarArquivo(QString const &id);
-    QSqlDatabase db;
-    QString nomeBD;
+    QSqlDatabase *db;
 };
 
 #endif // ALUNODAO_H

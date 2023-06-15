@@ -4,7 +4,7 @@ Matricula::Matricula()
 {
 
 }
-Matricula::Matricula(int ano, int semestre,float nota1,float nota2, Aluno aluno, Disciplina disciplina):ano(ano),
+Matricula::Matricula(int ano, int semestre,float nota1,float nota2, Aluno aluno, Disciplina *disciplina):ano(ano),
     semestre(semestre),
     aluno(aluno),
     disciplina(disciplina)
@@ -14,24 +14,18 @@ Matricula::Matricula(int ano, int semestre,float nota1,float nota2, Aluno aluno,
     this->nota2 = nota2;
 }
 
+void Matricula::setMatricula(QString matricula){
+    ano = matricula.mid(0,5).toInt();
+    semestre = matricula.mid(5,7).toInt();
+}
 int Matricula::getAno() const
 {
     return ano;
 }
 
-void Matricula::setAno(int newAno)
-{
-    ano = newAno;
-}
-
 int Matricula::getSemestre() const
 {
     return semestre;
-}
-
-void Matricula::setSemestre(int newSemestre)
-{
-    semestre = newSemestre;
 }
 
 float Matricula::getNota1() const
@@ -58,7 +52,7 @@ void Matricula::setNota2(float newNota2)
 
 const QString &Matricula::getAluno() const
 {
-    return aluno.getDados();
+    return aluno.toQString();
 }
 
 void Matricula::setAluno(const Aluno &newAluno)
@@ -66,18 +60,21 @@ void Matricula::setAluno(const Aluno &newAluno)
     aluno = newAluno;
 }
 
-const QString &Matricula::getDisciplina() const
+Disciplina* &Matricula::getDisciplina()
 {
-    return disciplina.toQString();
+    return disciplina;
 }
-
-void Matricula::setDisciplina(const Disciplina &newDisciplina)
+QString Matricula::getDisciplinaQs(){
+    return disciplina->toQString();
+}
+void Matricula::setDisciplina(const QString newDisciplina)
 {
-    disciplina = newDisciplina;
+    disciplina = new Disciplina();
+    disciplina->setCod_disciplina(newDisciplina);
 }
 
 QString Matricula::toQString()const{
-    return QString::number(ano)+";"+QString::number(semestre)+";"+aluno.getDados()+";"+QString::number(nota1)+";"+QString::number(nota2)+";"+QString::number((nota1+nota2)/2);
+    return QString::number(ano)+";"+QString::number(semestre)+";"+aluno.toQString()+";"+QString::number(nota1)+";"+QString::number(nota2)+";"+QString::number((nota1+nota2)/2);
 
 }
 
@@ -86,12 +83,15 @@ float Matricula::getNotaf() const
     return (nota1+nota2)/2;
 }
 
-QString Matricula::getTurma() const
+Turma* Matricula::getTurma() const
 {
-    return turma.toQString();
+    return turma;
 }
-
-void Matricula::setTurma(const Turma &newTurma)
+QString Matricula::getTurmaQs(){
+    return turma->toQString();
+}
+void Matricula::setTurma(const QString &newTurma)
 {
-    turma = newTurma;
+    turma = new Turma();
+    turma->setCod_turma(newTurma);
 }

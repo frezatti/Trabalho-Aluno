@@ -21,6 +21,6 @@ QString Aluno::getNome()const{
     return nome;
 }
 
-QString Aluno::getDados()const{
+QString Aluno::toQString()const{
     return matricula+";"+nome;
 }

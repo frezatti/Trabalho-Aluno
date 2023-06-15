@@ -14,6 +14,7 @@ class TurmaDao: public DAO<Turma>
 {
 public:
     TurmaDao();
+    TurmaDao(QString filename): filename(filename){}
     void inserir(Turma* obj);  // Create
     Turma* buscar(QString const& id);  // Read
     void alterar(Turma* obj);  // Update

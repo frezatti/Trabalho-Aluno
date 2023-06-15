@@ -3,7 +3,7 @@
 TurmaDao::TurmaDao()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    nomeBD = "C:/Users/i5/Documents/Junio/Trabalho-Aluno-master/academico.db";
+    nomeBD = "/Users/adrielfrezatti/Programing/c++/Qt/Trabalho-Aluno/academico.db";
     db.setDatabaseName(nomeBD);
 }
 

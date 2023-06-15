@@ -6,6 +6,7 @@ class Aluno
 {
 public:
     Aluno();
+    Aluno(QString mat):matricula(mat){}
     Aluno(QString mat, QString nome);
 
     QString getMatricula() const;
@@ -14,7 +15,7 @@ public:
     QString getNome() const;
     void setNome(const QString &newNome);
 
-    QString getDados() const;
+    QString toQString() const;
 
 
 

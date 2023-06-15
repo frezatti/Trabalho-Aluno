@@ -8,12 +8,10 @@ class Matricula
 {
 public:
     Matricula();
-    Matricula(int ano, int semestre,float nota1,float nota2, Aluno aluno, Disciplina disciplina);
-
+    Matricula(int ano, int semestre, float nota1, float nota2, Aluno aluno, Disciplina *disciplina);
+    void setMatricula(QString Matricula);
     int getAno() const;
-    void setAno(int newAno);
     int getSemestre() const;
-    void setSemestre(int newSemestre);
     float getNota1() const;
     void setNota1(float newNota1);
     float getNota2() const;
@@ -22,14 +20,16 @@ public:
     const QString &getAluno() const;
     void setAluno(const Aluno &newAluno);
 
-    const QString &getDisciplina() const;
-    void setDisciplina(const Disciplina &newDisciplina);
+    Disciplina *&getDisciplina() ;
+    QString getDisciplinaQs();
+    void setDisciplina(const QString newDisciplina);
 
     QString toQString()const;
     float getNotaf() const;
 
-    QString getTurma() const;
-    void setTurma(const Turma &newTurma);
+    Turma *getTurma() const;
+    QString getTurmaQs();
+    void setTurma(const QString &newTurma);
 
 private:
     int ano;
@@ -37,8 +37,8 @@ private:
     float nota1;
     float nota2;
     Aluno aluno;
-    Disciplina disciplina;
-    Turma turma;
+    Disciplina* disciplina;
+    Turma *turma;
 };
 
 #endif // MATRICULA_H

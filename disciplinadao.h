@@ -13,18 +13,15 @@
 class DisciplinaDAO: public DAO<Disciplina>
 {
 public:
-    DisciplinaDAO();
-    DisciplinaDAO(QString filename): filename(filename){}
+    DisciplinaDAO(QSqlDatabase *db);
     void inserir(Disciplina* obj);  // Create
     Disciplina* buscar(QString const& id);  // Read
     void alterar(Disciplina* obj);  // Update
     void deletar(QString const& id);  // Delete
-    std::list<QString>* listar();  // Listar
+    std::list<QString>* info();  // Listar
 
 private:
-    QString filename;
-    QSqlDatabase db;
-    QString nomeBD;
+    QSqlDatabase *db;
 };
 
 #endif // DISCIPLINADAO_H
