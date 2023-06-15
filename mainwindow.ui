@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -637,22 +637,12 @@
        <string>Turma</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>200</y>
-        <width>461</width>
-        <height>181</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>110</x>
         <y>60</y>
-        <width>451</width>
+        <width>271</width>
         <height>30</height>
        </rect>
       </property>
@@ -665,12 +655,12 @@
           </font>
          </property>
          <property name="text">
-          <string>Cod. da Disciplina :</string>
+          <string>Cod. da Turma :</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditCod_Disciplina"/>
+        <widget class="QLineEdit" name="lineEditCod_Turma"/>
        </item>
       </layout>
      </widget>
@@ -678,7 +668,7 @@
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>100</y>
+        <y>110</y>
         <width>451</width>
         <height>30</height>
        </rect>
@@ -692,12 +682,12 @@
           </font>
          </property>
          <property name="text">
-          <string>Cod. da turma :</string>
+          <string>Cod. da Disciplina:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEditCod_Turma_2"/>
+        <widget class="QLineEdit" name="lineEditCod_Disciplina"/>
        </item>
       </layout>
      </widget>
@@ -712,7 +702,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_11">
        <item>
-        <widget class="QPushButton" name="pushButtonInserir_2">
+        <widget class="QPushButton" name="pushButtonInserirTur">
          <property name="font">
           <font>
            <pointsize>12</pointsize>
@@ -737,14 +727,14 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButtonAtualizar_2">
+        <widget class="QPushButton" name="pushButtonConsultarTurma">
          <property name="font">
           <font>
            <pointsize>12</pointsize>
           </font>
          </property>
          <property name="text">
-          <string>Atualizar</string>
+          <string>Consultar</string>
          </property>
         </widget>
        </item>
@@ -762,14 +752,14 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButtonConsultar_2">
+        <widget class="QPushButton" name="pushButtonAtualizarTurma">
          <property name="font">
           <font>
            <pointsize>12</pointsize>
           </font>
          </property>
          <property name="text">
-          <string>Consultar</string>
+          <string>Atualizar</string>
          </property>
         </widget>
        </item>
@@ -800,6 +790,43 @@
        </item>
       </layout>
      </widget>
+     <widget class="QTableWidget" name="tableWidgetTur">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>200</y>
+        <width>461</width>
+        <height>261</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>60</y>
+        <width>151</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_12">
+       <item>
+        <widget class="QLabel" name="label_10">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>SubTurma:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEditCod_SubTurma"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -809,7 +836,7 @@
      <x>0</x>
      <y>0</y>
      <width>725</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

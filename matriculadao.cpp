@@ -1,15 +1,12 @@
 #include "matriculadao.h"
 
-MatriculaDao::MatriculaDao()
+MatriculaDao::MatriculaDao(QSqlDatabase *db):db(db)
 {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    nomeBD = "/Users/adrielfrezatti/Programing/c++/Qt/Trabalho-Aluno/academico.db";
-    db.setDatabaseName(nomeBD);
 }
 
 
 void MatriculaDao::inserir(Matricula *obj){
-    if (!db.open()){
+    if (!db->open()){
         throw QString("Erro ao abrir o banco de dados");
     }
     QSqlQuery query;
@@ -21,10 +18,10 @@ void MatriculaDao::inserir(Matricula *obj){
     query.bindValue(":nt2", obj->getNota2());
     query.bindValue(":med", obj->getNotaf());
     if (!query.exec()){
-        db.close();
+        db->close();
         throw QString("Erro ao executar a inserção");
     }
-    db.close();
+    db->close();
 }
 
 

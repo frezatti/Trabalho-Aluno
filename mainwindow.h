@@ -34,9 +34,7 @@ private slots:
     void on_pushButtonAtualizar_clicked();
 
     void on_pushButtonRemover_clicked();
-/*
-    void on_pushButtonSearch_clicked();
-*/
+
     void on_pushButtonIncluirDis_clicked();
 
     void on_pushButtonConsultarDis_clicked();
@@ -61,13 +59,19 @@ private slots:
 */
     void on_tabWidget_currentChanged(int index);
 
+    void on_pushButtonInserirTur_clicked();
+
+    void on_pushButtonConsultarTurma_clicked();
+
+    void on_pushButtonAtualizarTurma_clicked();
+
 private:
     QSqlDatabase *db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"));
-    QString filepath = "/Users/adrielfrezatti/Programing/SistAcad/academico.db";
+    QString filepath = "C:/Users/Eliane/Documents/AdrielFaculdade/Trabalho-Aluno/academico.db";
     AlunoController *controler;
     //MatriculaControler controlerMat;
     DisciplinaControler *controlerDis;
     Ui::MainWindow *ui;
-    //TurmaControler* controlertur;
+    TurmaControler* controlertur;
 };
 #endif // MAINWINDOW_H

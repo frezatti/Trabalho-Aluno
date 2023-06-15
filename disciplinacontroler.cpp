@@ -25,24 +25,28 @@ void DisciplinaControler::addDisciplina(QString codigo, QString nome) {
  }
 
 }
-
-void DisciplinaControler::buscarDisciplina(QString &id) {
+void DisciplinaControler::atualizarDisciplina(QString cod,QString nom){
+   daoDisciplina->alterar(new Disciplina(cod, nom));
+}
+QString DisciplinaControler::buscarDisciplina(QString &id) {
     // Verificar se o código da disciplina existe
-    if (!analisarDisciplina(id)) {
+    a =new Disciplina;
+    a->setCod_disciplina(id);
+    a = daoDisciplina->buscar(a);
+    if (!a) {
         throw QString("Código de disciplina não encontrado.");
     }
-    a = daoDisciplina->buscar(id);
-    id = a->getDadosDisciplina();
+    return a->toQString();
 }
 
-bool DisciplinaControler::analisarDisciplina(QString &id) {
+bool DisciplinaControler::analisarDisciplina(Disciplina* id) {
     // Verificar se o código da disciplina existe
     a = daoDisciplina->buscar(id);
     if (a != nullptr) {
         // O código da disciplina existe
-        id = a->getDadosDisciplina();
-        return true;
+        id = a;
         delete a;
+        return true;
     } else {
         // O código da disciplina não existe
         throw QString("Código de disciplina não encontrado.");

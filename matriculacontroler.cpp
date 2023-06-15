@@ -1,10 +1,8 @@
 #include "matriculacontroler.h"
 
-MatriculaControler::MatriculaControler()
+MatriculaControler::MatriculaControler(QSqlDatabase * db)
 {
-    daoMatricula = new MatriculaDao();
-    daoTurma = new TurmaDao();
-
+    daoMatricula = new MatriculaDao(db);
 }
 
 void MatriculaControler::addMatricula(QString matricula, QString codDisciplina, QString codTurma){
@@ -31,8 +29,9 @@ void MatriculaControler::buscarMatricula(QString &id){
 }
 
 int MatriculaControler::analizar(QString matricula, QString Disciplina, QString Turma){
-    if(!daoMatricula->buscar(matricula))return 1;
+  /*  if(!daoMatricula->buscar(matricula))return 1;
     if(!daoDisciplina->buscar(Disciplina))return 2;
     if(!daoTurma->buscar(Turma))return 3;
     return 0;
+*/
 }

@@ -4,7 +4,9 @@ Turma::Turma()
 {
 
 }
+Turma::Turma(QString cod_turma):cod_turma(cod_turma){
 
+}
 Turma::Turma(QString cod_turma, int sub_turma, int maxAlunos, int numAlunos): cod_turma(cod_turma), sub_turma(sub_turma), maxAlunos(maxAlunos), numAlunos(numAlunos)
 {
 
@@ -51,7 +53,17 @@ void Turma::setNumAlunos(int newNumAlunos)
 }
 
 QString Turma::getDadosTurma()const{
-    return cod_turma+";"+QString::number(sub_turma);
+    return cod_turma+";"+cod_Disciplina+";"+QString::number(sub_turma);
+}
+
+QString Turma::getCod_Disciplina() const
+{
+    return cod_Disciplina;
+}
+
+void Turma::setCod_Disciplina(const QString &newCod_Disciplina)
+{
+    cod_Disciplina = newCod_Disciplina;
 }
 
 QString Turma::toQString()const{

@@ -10,8 +10,7 @@
 class MatriculaControler
 {
 public:
-    MatriculaControler();
-    MatriculaControler(QString Filename);
+    MatriculaControler(QSqlDatabase *db);
     void addMatricula(QString matricula, QString codDisciplina, QString codTurma);
     void buscarMatricula(QString &id);
     void atualizarMatricula();

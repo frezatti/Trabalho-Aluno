@@ -9,6 +9,7 @@ class Disciplina
 public:
     Disciplina();
     Disciplina(QString codigo,QString disciplina);
+
     const QString &getCod_disciplina() const;
     void setCod_disciplina(const QString &newCod_disciplina);
 

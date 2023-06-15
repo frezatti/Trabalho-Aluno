@@ -1,7 +1,7 @@
 #ifndef TURMADAO_H
 #define TURMADAO_H
-#include"turma.h"
-#include "dao.h"
+
+#include "turma.h"
 #include <list>
 #include <QString>
 #include <QStringList>
@@ -10,21 +10,19 @@
 #include <QSqlQuery>
 
 
-class TurmaDao: public DAO<Turma>
+class TurmaDao
 {
 public:
-    TurmaDao();
-    TurmaDao(QString filename): filename(filename){}
+    TurmaDao(QSqlDatabase *db);
+
     void inserir(Turma* obj);  // Create
-    Turma* buscar(QString const& id);  // Read
+    Turma* buscar(Turma* id);  // Read
     void alterar(Turma* obj);  // Update
     void deletar(QString const& id);  // Delete
-    std::list<QString>* listar();  // Listar
+    std::list<QString>* info();
 
 private:
-    QString filename;
-    QSqlDatabase db;
-    QString nomeBD;
+    QSqlDatabase *db;
 };
 
 #endif // TURMADAO_H

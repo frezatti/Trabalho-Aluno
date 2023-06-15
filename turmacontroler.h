@@ -8,17 +8,18 @@
 class TurmaControler
 {
 public:
-    TurmaControler();
-    TurmaControler(QString filename);
-    void addTurma(QString cod_turma, int sub_turma);
-    void buscarTurma(QString &id);
-    void atualizarTurma();
+    TurmaControler(QSqlDatabase *db);
+
+    void addTurma(QString cod_turma, QString cod_disciplina, int sub_turma);
+    QString buscar(QString &id);
+    void atualizarTurma(QString codturma, QString coddisciplina, int sub);
     void removerTurma();
     void analisarTurma(QString &id);
+    std::list<QString>* info();
 private:
     Turma* a;
     TurmaDao* daoTurma;
-    std::list<Turma*>* turma;
+
 };
 
 #endif // TURMACONTROLER_H

@@ -9,20 +9,17 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-class MatriculaDao: public DAO<Matricula>
+class MatriculaDao
 {
 public:
-    MatriculaDao();
-    MatriculaDao(QString filename):filename(filename){}
+    MatriculaDao(QSqlDatabase *db);
     void inserir(Matricula* obj);  // Create
     Matricula* buscar(QString const& id);  // Read
     void alterar(Matricula* obj);  // Update
     void deletar(QString const& id);  // Delete
     std::list<QString>* listar();  // Listar
 private:
-    QString filename;
-    QSqlDatabase db;
-    QString nomeBD;
+    QSqlDatabase *db;
 
 };
 

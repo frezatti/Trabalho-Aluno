@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     db->setDatabaseName(filepath);
     controler = new AlunoController(db);
     controlerDis = new DisciplinaControler(db);
+    controlertur = new TurmaControler(db);
 
     ui->tableWidget->clear();
     ui->tableWidget->setColumnCount(2);
@@ -16,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setHorizontalHeaderLabels(headers);
     std::list<QString>::iterator it;
     std::list<QString> *infoList = controler->info();
-    if(infoList->empty())throw QString("you did it wrong you dummie");
+
     QStringList info;
     for(int j= ui->tableWidget->rowCount();j>=0;j--){
         ui->tableWidget->removeRow(j);
@@ -30,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
     }
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setColumnWidth(0,200);
-    ui->tableWidget->resizeColumnToContents(1);
     delete infoList;
 }
 
@@ -49,7 +49,7 @@ void updateTable(AlunoController *controler,Ui::MainWindow* ui){
         ui->tableWidget->setHorizontalHeaderLabels(headers);
         std::list<QString>::iterator it;
         std::list<QString> *infoList = controler->info();
-        if(infoList->empty())throw QString("you did it wrong you dummie");
+
         QStringList info;
         for(int j= ui->tableWidget->rowCount();j>=0;j--){
             ui->tableWidget->removeRow(j);
@@ -63,11 +63,11 @@ void updateTable(AlunoController *controler,Ui::MainWindow* ui){
         }
         ui->tableWidget->verticalHeader()->setVisible(false);
         ui->tableWidget->setColumnWidth(0,200);
-        ui->tableWidget->resizeColumnToContents(1);
+
         delete infoList;
 }
 
-void updateTabledDis(DisciplinaControler *controler,Ui::MainWindow* ui){
+void updateTableDis(DisciplinaControler *controler,Ui::MainWindow* ui){
 
         ui->tableWidgetDis->clear();
         ui->tableWidgetDis->setColumnCount(2);
@@ -75,7 +75,7 @@ void updateTabledDis(DisciplinaControler *controler,Ui::MainWindow* ui){
         ui->tableWidgetDis->setHorizontalHeaderLabels(headers);
         std::list<QString>::iterator it;
         std::list<QString> *infoList = controler->info();
-        if(infoList->empty())throw QString("you did it wrong you dummie");
+
         QStringList info;
         for(int j= ui->tableWidgetDis->rowCount();j>=0;j--){
             ui->tableWidgetDis->removeRow(j);
@@ -89,10 +89,38 @@ void updateTabledDis(DisciplinaControler *controler,Ui::MainWindow* ui){
         }
         ui->tableWidgetDis->verticalHeader()->setVisible(false);
         ui->tableWidgetDis->setColumnWidth(0,200);
-        ui->tableWidgetDis->resizeColumnToContents(1);
+
         delete infoList;
 }
 
+void updateTableTur(TurmaControler *controler,Ui::MainWindow* ui){
+
+        ui->tableWidgetTur->clear();
+        ui->tableWidgetTur->setColumnCount(3);
+        QStringList headers{"Codigo Turma ","Codigo Disciplina","SubTurma"};
+        ui->tableWidgetTur->setHorizontalHeaderLabels(headers);
+        std::list<QString>::iterator it;
+        std::list<QString> *infoList = controler->info();
+        if(infoList->empty())throw QString("you did it wrong you dummie");
+        QStringList info;
+        for(int j= ui->tableWidgetTur->rowCount();j>=0;j--){
+            ui->tableWidgetTur->removeRow(j);
+        }
+        int i=0;
+
+        for(it = infoList->begin();it!= infoList->end();it++,i++){
+            info = it->split(";");
+            ui->tableWidgetTur->insertRow(i);
+            ui->tableWidgetTur->setItem(i,0,new QTableWidgetItem(info[0]));
+            ui->tableWidgetTur->setItem(i,1,new QTableWidgetItem(info[1]));
+            ui->tableWidgetTur->setItem(i,2,new QTableWidgetItem(info[2]));
+        }
+        ui->tableWidgetTur->verticalHeader()->setVisible(false);
+        ui->tableWidgetTur->setColumnWidth(0,150);
+        ui->tableWidgetTur->setColumnWidth(1,150);
+        ui->tableWidgetTur->setColumnWidth(2,150);
+        delete infoList;
+}
 
 void MainWindow::on_pushButtonInserir_clicked()
 {
@@ -106,6 +134,7 @@ void MainWindow::on_pushButtonInserir_clicked()
         }
         updateTable(controler, ui);
         ui->lineEditMatAluno->setFocus();
+
     } catch (QString &error) {
        QMessageBox::warning(this,"Erro",error);
     }
@@ -158,21 +187,7 @@ void MainWindow::on_pushButtonRemover_clicked()
     }
 }
 
-/*
-void MainWindow::on_pushButtonSearch_clicked()
-{
-    try {
-        // Buscando o arquivo no disco
-        //filename = QFileDialog::getOpenFileName(this,"Abrir Arquivo",QDir::currentPath(),"Arquivos Textos (*.csv *.txt *.*)");
-        //if(filename.isEmpty()) throw QString("Arquivo nao foi selecionado");
-        //updateTable(controler,ui);
-        ui->tabWidget->show();
 
-    } catch (QString &erro) {
-        QMessageBox::information(this,"ERRO",erro);
-    }
-}
-*/
 
 void MainWindow::on_pushButtonIncluirDis_clicked()
 {
@@ -184,7 +199,7 @@ void MainWindow::on_pushButtonIncluirDis_clicked()
             }else{
                 throw QString("Ambos os campos devem estar preenchidos para que uma Disciplina posso ser incluido");
             }
-           // updateTable(controlerDis, ui);
+            updateTableDis(controlerDis, ui);
             ui->lineEditCodigoDis->setFocus();
         } catch (QString &error) {
            QMessageBox::warning(this,"Erro",error);
@@ -197,11 +212,9 @@ void MainWindow::on_pushButtonConsultarDis_clicked()
     try {
         QString codigo = ui->lineEditCodigoDis->text();
         if(codigo == "") throw QString("Para fazer um busca e preciso fornecer uma matricula");
-        controlerDis->buscarDisciplina(codigo);
-       QStringList disciplina = codigo.split(";");
+       QStringList disciplina =controlerDis->buscarDisciplina(codigo).split(";");
        ui->lineEditNomeDis->setText(disciplina[1]);
        ui->lineEditCodigoDis->setFocus();
-
     } catch (QString &error) {
         QMessageBox::warning(this,"Erro",error);
     }
@@ -230,10 +243,9 @@ void MainWindow::on_pushButtonAtualizarDis_clicked()
             QString codigo =  ui->lineEditCodigoDis->text();
             QString nome = ui->lineEditNomeDis->text();;
             if(codigo == ""&& nome == "") throw QString("Preencher codigo e nome");
-            //controlerDis->atualizarDisciplina(codigo,nome);
-           // updateTable(controlerDis,ui);
+            controlerDis->atualizarDisciplina(codigo,nome);
+            updateTableDis(controlerDis,ui);
             ui->lineEditCodigoDis->setFocus();
-
         } catch (QString &error) {
             QMessageBox::warning(this,"Erro",error);
         }
@@ -307,84 +319,77 @@ void MainWindow::on_pushButtonListarMat_clicked()
             QMessageBox::warning(this,"Erro",error);
         }
 }
-void MainWindow::on_pushButtonInserir_2_clicked()
-{
-    try {
-        QString codigo = ui->lineEditCod_Disciplina->text();
-        QString nome = ui->lineEditCod_Turma_2->text();
-        if(nome!= ""&& codigo !=""){
-            controlertur->addTurma(codigo,nome.toInt());
-        }else{
-            throw QString("Ambos os campos devem estar preenchidos para que uma Disciplina posso ser incluido");
-        }
-        //updateTable(controlerDis, ui);
-        ui->lineEditCod_Disciplina->setFocus();
-    } catch (QString &error) {
-       QMessageBox::warning(this,"Erro",error);
-    }
-}
-
-
-
-void MainWindow::on_pushButtonAtualizar_2_clicked()
-{
-    try {
-        QString codigo =  ui->lineEditCod_Disciplina->text();
-        QString nome = ui->lineEditCod_Turma_2->text();
-        if(codigo == ""&& nome == "") throw QString("Preencher codigo e nome");
-        //controlerDis->atualizarDisciplina(codigo,nome);
-        //updateTable(controlerDis,ui);
-        ui->lineEditCod_Disciplina->setFocus();
-
-    } catch (QString &error) {
-        QMessageBox::warning(this,"Erro",error);
-    }
-
-}
-
-
-void MainWindow::on_pushButtonConsultar_2_clicked()
-{
-    try {
-        QString codigo = ui->lineEditCod_Disciplina->text();
-        if(codigo == "") throw QString("Para fazer um busca e preciso fornecer uma matricula");
-        controlertur->buscarTurma(codigo);
-       QStringList turma = codigo.split(";");
-       ui->lineEditCod_Turma_2->setText(turma[1]);
-       ui->lineEditCod_Disciplina->setFocus();
-
-    } catch (QString &error) {
-        QMessageBox::warning(this,"Erro",error);
-    }
-
-}
-
-
-void MainWindow::on_pushButtonRemover_2_clicked()
-{
-    try {
-        QString codigo =  ui->lineEditCod_Disciplina->text();
-        if(codigo == "") throw QString("Para fazer um busca e preciso fornecer um codigo");
-        //controlerDis->removerDisciplina(codigo);
-        //updateTable(controlerDis,ui);
-        ui->lineEditCod_Turma_2->setFocus();
-
-    } catch(QString &error) {
-        QMessageBox::warning(this,"Erro",error);
-    }
-
-}
 
 */
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
+    try {
         switch (index) {
         case 0:
             updateTable(controler,ui);
             break;
+        case 1:
+            updateTableDis(controlerDis,ui);
+            break;
+        case 2:
+            break;
+        case 3:
+            updateTableTur(controlertur,ui);
+            break;
         default:
             break;
         }
+    } catch(QString &error) {
+        QMessageBox::warning(this,"Erro",error);
+    }
+}
+
+
+void MainWindow::on_pushButtonInserirTur_clicked()
+{
+
+    try {
+        QString codigoDis =  ui->lineEditCod_Disciplina->text();
+        QString codigotur = ui->lineEditCod_Turma->text();
+        if(codigotur == "") throw QString("Para fazer um busca e preciso fornecer uma turma");
+        controlertur->addTurma(codigotur,codigoDis,ui->lineEditCod_SubTurma->text().toInt());
+        updateTableTur(controlertur,ui);
+        ui->lineEditCod_Disciplina->setFocus();
+
+    } catch(QString &error) {
+        QMessageBox::warning(this,"Erro",error);
+    }
+}
+
+
+void MainWindow::on_pushButtonConsultarTurma_clicked()
+{
+    try {
+        QString turma = ui->lineEditCod_Turma->text();
+        if(turma == "") throw QString("Para fazer um busca e preciso fornecer uma turma");
+        QStringList turmalist =  controlertur->buscar(turma).split(";");
+        ui->lineEditCod_Disciplina->setText(turmalist[1]);
+        ui->lineEditCod_SubTurma->setText(turmalist[2]);
+        ui->lineEditCod_Turma->setFocus();
+
+    } catch (QString &error) {
+        QMessageBox::warning(this,"Erro",error);
+    }
+}
+
+
+void MainWindow::on_pushButtonAtualizarTurma_clicked()
+{
+    try {
+        QString codturma =  ui->lineEditCod_Turma->text();
+        QString coddisciplina = ui->lineEditCod_Disciplina->text();
+        if(codturma == ""&& coddisciplina == "") throw QString("Preencher codigo e nome");
+        controlertur->atualizarTurma(codturma,coddisciplina,ui->lineEditCod_SubTurma->text().toInt());
+        updateTableTur(controlertur,ui);
+        ui->lineEditCod_Turma->setFocus();
+    } catch (QString &error) {
+        QMessageBox::warning(this,"Erro",error);
+    }
 }
 

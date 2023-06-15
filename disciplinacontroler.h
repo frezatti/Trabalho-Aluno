@@ -9,15 +9,14 @@ class DisciplinaControler
 public:
     DisciplinaControler(QSqlDatabase *db);
     void addDisciplina(QString codigo, QString nome);
-    void buscarDisciplina(QString &id);
-    void atualizarDisciplina();
+    QString buscarDisciplina(QString &id);
+    void atualizarDisciplina(QString cod,QString nom);
     void removerDisciplina(QString mat);
-    bool analisarDisciplina(QString &id);
+    bool analisarDisciplina(Disciplina *id);
     std::list<QString> * info();
 private:
     Disciplina* a;
-    DisciplinaDAO *daoDisciplina;
-    std::list<Disciplina*>* disciplina;
+    DisciplinaDAO* daoDisciplina;
 };
 
 #endif // DISCIPLINACONTROLER_H
