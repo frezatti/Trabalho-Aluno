@@ -51,11 +51,6 @@ private slots:
 
     void on_pushButtonListarMat_clicked();
 
-    void on_pushButtonInserir_2_clicked();
-    void on_pushButtonAtualizar_2_clicked();
-
-    void on_pushButtonConsultar_2_clicked();
-    void on_pushButtonRemover_2_clicked();
 */
     void on_tabWidget_currentChanged(int index);
 
@@ -67,7 +62,7 @@ private slots:
 
 private:
     QSqlDatabase *db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"));
-    QString filepath = "C:/Users/Eliane/Documents/AdrielFaculdade/Trabalho-Aluno/academico.db";
+    QString filepath = "/Users/adrielfrezatti/Downloads/Trabalho-Aluno-master/academico.dbb";
     AlunoController *controler;
     //MatriculaControler controlerMat;
     DisciplinaControler *controlerDis;

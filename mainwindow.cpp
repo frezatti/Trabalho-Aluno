@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     controler = new AlunoController(db);
     controlerDis = new DisciplinaControler(db);
     controlertur = new TurmaControler(db);
-
+   /*
     ui->tableWidget->clear();
     ui->tableWidget->setColumnCount(2);
     QStringList headers{"Matricula","Nome do Aluno"};
@@ -30,8 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->tableWidget->setItem(i,1,new QTableWidgetItem(info[1]));
     }
     ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->setColumnWidth(0,200);
+    ui->tableWidget->setColumnWidth(0,249);
     delete infoList;
+*/
 }
 
 
@@ -62,7 +63,8 @@ void updateTable(AlunoController *controler,Ui::MainWindow* ui){
             ui->tableWidget->setItem(i,1,new QTableWidgetItem(info[1]));
         }
         ui->tableWidget->verticalHeader()->setVisible(false);
-        ui->tableWidget->setColumnWidth(0,200);
+        ui->tableWidget->setColumnWidth(0,249);
+        ui->tableWidget->setColumnWidth(1,250);
 
         delete infoList;
 }
@@ -88,7 +90,8 @@ void updateTableDis(DisciplinaControler *controler,Ui::MainWindow* ui){
             ui->tableWidgetDis->setItem(i,1,new QTableWidgetItem(info[1]));
         }
         ui->tableWidgetDis->verticalHeader()->setVisible(false);
-        ui->tableWidgetDis->setColumnWidth(0,200);
+        ui->tableWidgetDis->setColumnWidth(0,249);
+        ui->tableWidgetDis->setColumnWidth(1,250);
 
         delete infoList;
 }
@@ -116,12 +119,41 @@ void updateTableTur(TurmaControler *controler,Ui::MainWindow* ui){
             ui->tableWidgetTur->setItem(i,2,new QTableWidgetItem(info[2]));
         }
         ui->tableWidgetTur->verticalHeader()->setVisible(false);
-        ui->tableWidgetTur->setColumnWidth(0,150);
-        ui->tableWidgetTur->setColumnWidth(1,150);
-        ui->tableWidgetTur->setColumnWidth(2,150);
+        ui->tableWidgetTur->setColumnWidth(0,166);
+        ui->tableWidgetTur->setColumnWidth(1,166);
+        ui->tableWidgetTur->setColumnWidth(2,167);
         delete infoList;
 }
+/*void updateTableMat(MatriculaControler *controler,Ui::MainWindow* ui){
 
+        ui->tableWidgetMat->clear();
+        ui->tableWidgetMat->setColumnCount(4);
+        QStringList headers{"Matricula","Nome","Turma","Disciplina"};
+        ui->tableWidgetMat->setHorizontalHeaderLabels(headers);
+        std::list<QString>::iterator it;
+        std::list<QString> *infoList = controler->info();
+        if(infoList->empty())throw QString("you did it wrong you dummie");
+        QStringList info;
+        for(int j= ui->tableWidgetMat->rowCount();j>=0;j--){
+            ui->tableWidgetMat->removeRow(j);
+        }
+        int i=0;
+
+        for(it = infoList->begin();it!= infoList->end();it++,i++){
+            info = it->split(";");
+            ui->tableWidgetMat->insertRow(i);
+            ui->tableWidgetMat->setItem(i,0,new QTableWidgetItem(info[0]));
+            ui->tableWidgetMat->setItem(i,1,new QTableWidgetItem(info[1]));
+            ui->tableWidgetMat->setItem(i,2,new QTableWidgetItem(info[2]));
+            ui->tableWidgetMat->setItem(i,3,new QTableWidgetItem(info[2]));
+        }
+        ui->tableWidgetMat->verticalHeader()->setVisible(false);
+        ui->tableWidgetMat->setColumnWidth(0,150);
+        ui->tableWidgetMat->setColumnWidth(1,150);
+        ui->tableWidgetMat->setColumnWidth(2,150);
+        ui->tableWidgetMat->setColumnWidth(3,150);
+        delete infoList;
+}*/
 void MainWindow::on_pushButtonInserir_clicked()
 {
     try {
@@ -251,8 +283,8 @@ void MainWindow::on_pushButtonAtualizarDis_clicked()
         }
 }
 
-/*
-void MainWindow::on_pushButtonIncluirMat_clicked()
+
+/*void MainWindow::on_pushButtonIncluirMat_clicked()
 {
         try {
             QString matricula = ui->lineEditMatriculaMat->text();
@@ -267,9 +299,9 @@ void MainWindow::on_pushButtonIncluirMat_clicked()
         } catch (QString &error) {
             QMessageBox::warning(this,"Erro",error);
         }
-}
+}*/
 
-
+/*
 void MainWindow::on_pushButtonConsultarMat_clicked()
 {
         try {
