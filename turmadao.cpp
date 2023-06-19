@@ -83,11 +83,26 @@ void TurmaDao::alterar(Turma *obj){
 
 void TurmaDao::deletar(QString const &id){
 
-
-
-
-
-}//Delete
+    Turma* turma = new Turma();
+    turma->setCod_turma(id);
+    if (this->buscar(turma)==nullptr){
+        throw QString("Disciplina não encontrado!");
+    }
+    else{
+        if (!db->open()){
+            throw QString("Erro ao abrir o banco de dados");
+        }
+        QSqlQuery query;
+        query.prepare("DELETE FROM turma WHERE cod_turma = :mat ;");
+        query.bindValue(":mat",turma->getCod_turma());
+        if (!query.exec()){
+            db->close();
+            throw QString("Erro ao executar a delete");
+        }
+        db->close();
+        delete turma;
+    }
+}
 
 std::list<QString>* TurmaDao::info(){
 
