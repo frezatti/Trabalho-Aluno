@@ -45,13 +45,17 @@ bool DisciplinaControler::analisarDisciplina(Disciplina* id) {
     if (a != nullptr) {
         // O código da disciplina existe
         id = a;
-        delete a;
-        return true;
+       return true;
     } else {
         // O código da disciplina não existe
         throw QString("Código de disciplina não encontrado.");
     }
 }
+
+void DisciplinaControler::removerDisciplina(QString mat){
+    daoDisciplina->deletar(mat);
+}
+
 
 std::list<QString> * DisciplinaControler::info(){
     return daoDisciplina->info();

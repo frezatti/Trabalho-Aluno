@@ -81,7 +81,13 @@ void TurmaDao::alterar(Turma *obj){
     }
 }
 
-void TurmaDao::deletar(QString const &id){}//Delete
+void TurmaDao::deletar(QString const &id){
+
+
+
+
+
+}//Delete
 
 std::list<QString>* TurmaDao::info(){
 

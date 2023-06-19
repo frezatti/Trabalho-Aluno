@@ -62,7 +62,7 @@ private slots:
 
 private:
     QSqlDatabase *db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"));
-    QString filepath = "/Users/adrielfrezatti/Downloads/Trabalho-Aluno-master/academico.dbb";
+    QString filepath = "/Users/adrielfrezatti/Programing/c++/Qt/Trabalho-Aluno/academico.db";
     AlunoController *controler;
     //MatriculaControler controlerMat;
     DisciplinaControler *controlerDis;

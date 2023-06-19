@@ -32,6 +32,7 @@ Disciplina* DisciplinaDAO::buscar(Disciplina *obj){
         query.bindValue(":mat", obj->getCod_disciplina());
         if (!query.exec()){
             db->close();
+            delete obj;
             throw QString("Erro ao executar a consulta");
         }
         while (query.next()){
@@ -78,7 +79,30 @@ void DisciplinaDAO::alterar(Disciplina* obj){
 }
 
 
-void DisciplinaDAO::deletar(QString const &id){}//Delete
+void DisciplinaDAO::deletar(QString const &id){
+    Disciplina* disciplina = new Disciplina();
+    disciplina->setCod_disciplina(id);
+    if (this->buscar(disciplina)==nullptr){
+        throw QString("Disciplina não encontrado!");
+    }
+    else{
+        if (!db->open()){
+            throw QString("Erro ao abrir o banco de dados");
+        }
+        QSqlQuery query;
+        query.prepare("DELETE FROM disciplina WHERE cod_disciplina = :mat ;");
+        query.bindValue(":mat",disciplina->getCod_disciplina());
+        if (!query.exec()){
+            db->close();
+            throw QString("Erro ao executar a delete");
+        }
+        db->close();
+        delete disciplina;
+    }
+}
+
+
+//Delete
 
 std::list<QString>* DisciplinaDAO::info(){
     QSqlQuery query;

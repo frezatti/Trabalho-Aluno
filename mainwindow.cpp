@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     controler = new AlunoController(db);
     controlerDis = new DisciplinaControler(db);
     controlertur = new TurmaControler(db);
-   /*
+
     ui->tableWidget->clear();
     ui->tableWidget->setColumnCount(2);
     QStringList headers{"Matricula","Nome do Aluno"};
@@ -32,7 +32,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setColumnWidth(0,249);
     delete infoList;
-*/
 }
 
 
@@ -259,8 +258,8 @@ void MainWindow::on_pushButtonRemoverDis_clicked()
     try {
         QString codigo =  ui->lineEditCodigoDis->text();
         if(codigo == "") throw QString("Para fazer um busca e preciso fornecer um codigo");
-        //controlerDis->removerDisciplina(codigo);
-       // updateTable(controlerDis,ui);
+        controlerDis->removerDisciplina(codigo);
+        updateTableDis(controlerDis,ui);
         ui->lineEditMatAluno->setFocus();
 
     } catch(QString &error) {
